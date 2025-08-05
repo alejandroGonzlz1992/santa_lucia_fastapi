@@ -26,15 +26,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"/>
 
     {% block title_browser %}
-        <title>Ferretería Santa Lucía | Inicio</title>
+        <title> Ferretería Santa Lucía | Inicio </title>
     {% endblock %}
-    
     <!--EOH-->
 </head>
 
 <!--BODY TAG-->
 <body>
-
     <!--alert icons design-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -70,83 +68,92 @@
                     <span class="align-middle">Ferretería Santa Lucía</span>
                 </a>
 
-                <!--menu list-->
-                <ul class="sidebar-nav">
-                    <li class="sidebar-header"> <b>PRINCIPAL</b> </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_root_home_page')}}">
-                            <i class="align-middle" data-feather="sliders"></i>
-                            <span class="align-middle">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header"> PERFIL USUARIO </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_profile_page')}}">
-                            <i class="align-middle" data-feather="user"></i>
-                            <span class="align-middle">Perfil</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_checkin_main_page')}}">
-                            <i class="align-middle" data-feather="clock"></i>
-                            <span class="align-middle">Registrar Marca</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header"> CONSULTA PLANILLAS </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_payroll_main_page')}}">
-                            <i class="align-middle" data-feather="credit-card"></i>
-                            <span class="align-middle">Planillas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header"> SOLICITUDES </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_permission_main_page')}}">
-                            <i class="align-middle" data-feather="check-square"></i>
-                            <span class="align-middle">Permisos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header"> INCAPACIDADES </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_inabilities_main_page')}}">
-                            <i class="align-middle" data-feather="briefcase"></i>
-                            <span class="align-middle">Incapacidades</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header"> EVALUACIONES </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_evaluation_main_page')}}">
-                            <i class="align-middle" data-feather="clipboard"></i>
-                            <span class="align-middle">Registro Evaluaciones</span>
-                        </a>
-                    </li>
-                    <hr/>
-                    <li class="sidebar-header"> MANTENIMIENTOS </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_crud_main_page')}}">
-                            <i class="align-middle" data-feather="settings"></i>
-                            <span class="align-middle">Mantenimientos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_register_main_page')}}">
-                            <i class="align-middle" data-feather="folder"></i>
-                            <span class="align-middle">Registros</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="{{url_for('getting_reports_main_page')}}">
-                            <i class="align-middle" data-feather="database"></i>
-                            <span class="align-middle">Reportes</span>
-                        </a>
-                    </li>
-                </ul>
+                {% block sidebar %}
+                    <!--menu list-->
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-header"> <b>PRINCIPAL</b> </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="{{url_for('Getting_Root_Endpoint')}}">
+                                <i class="align-middle" data-feather="sliders"></i>
+                                <span class="align-middle">Inicio</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-header"> PERFIL USUARIO </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="user"></i>
+                                <span class="align-middle">Perfil</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="clock"></i>
+                                <span class="align-middle">Registrar Marca</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-header"> CONSULTAS </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="credit-card"></i>
+                                <span class="align-middle">Planillas</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="credit-card"></i>
+                                <span class="align-middle">Aguinaldos</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="credit-card"></i>
+                                <span class="align-middle">Liquidaciones</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-header"> SOLICITUDES </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="check-square"></i>
+                                <span class="align-middle">Permisos</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="briefcase"></i>
+                                <span class="align-middle">Incapacidades</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-header"> EVALUACIONES </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="clipboard"></i>
+                                <span class="align-middle">Registro Evaluaciones</span>
+                            </a>
+                        </li>
+                        <hr/>
+                        <li class="sidebar-header"> MANTENIMIENTOS </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="{{url_for('Getting_Crud_Main_Menu_Endpoint')}}">
+                                <i class="align-middle" data-feather="settings"></i>
+                                <span class="align-middle">Mantenimientos</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="#">
+                                <i class="align-middle" data-feather="database"></i>
+                                <span class="align-middle">Reportes</span>
+                            </a>
+                        </li>
+                    </ul>
+                {% endblock %}
 
             </div>
         </div>
 
         <!--main container-->
         <div class="main">
+
             <!--side nav bar toggler-->
             <nav class="navbar navbar-expand navbar-light navbar-bg">
                 <a class="sidebar-toggle js-sidebar-toggle">
@@ -168,11 +175,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{url_for('getting_user_login_page')}}">
+                                <a class="dropdown-item" href="#">
                                     <i class="align-middle me-1" data-feather="user"></i>
                                     Usuario
                                 </a>
-                                <a class="dropdown-item" href="{{url_for('getting_user_admin_page')}}">
+                                <a class="dropdown-item" href="#">
                                     <i class="align-middle me-1" data-feather="user-check"></i>
                                     Administrador
                                 </a>
@@ -197,6 +204,7 @@
             <!--content-->
             <main class="content">
                 <div class="container-fluid p-0">
+
                     {% block container %}
                         <div class="row">
                             <div class="card">
@@ -204,8 +212,8 @@
                                     <div class="row">
                                         <!-- Column with image -->
                                         <div class="col-md-2 d-flex align-items-start">
-                                            <img src="{{url_for('static', path='static/ap_img/avatars/ferreteria_logo.jpg')}}" alt="Ferr Logo"
-                                                class="img-fluid" style="border-radius: 10px; max-height: 150px;">
+                                            <img src="{{url_for('static', path='static/ap_img/avatars/ferreteria_logo.jpg')}}"
+                                                 alt="Ferr Logo" class="img-fluid" style="border-radius: 10px; max-height: 150px;">
                                         </div>
 
                                         <!-- Column with text info -->
@@ -236,19 +244,17 @@
                             </div>
                         </div>
                     {% endblock %}
+
                 </div>
             </main>
-
         </div>
-
     </div>
 
     <!--local .js scripts -->
     {% block scripts %}
         <script src="{{url_for('static', path='static/ap_js/app.js')}}"></script>
     {% endblock %}
-
     <!--EOB-->
-</body>
 
+</body>
 </html>

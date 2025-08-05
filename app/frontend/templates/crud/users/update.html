@@ -539,9 +539,9 @@
 {% block scripts %}
     {{ super() }}
     <script type="module">
-        import { UsersRequest } from "{{url_for('static', path='scripts/validators/crud/usersValidate.js')}}";
+        import { UserRoleValidator } from "{{url_for('static', path='scripts/validators/crud/entities/roles.js')}}";
         document.addEventListener("DOMContentLoaded", () => {
-            new UsersRequest("id_users_form");
+            new UserRoleValidator("id_user_role_form");
         });
     </script>
 {% endblock %}
