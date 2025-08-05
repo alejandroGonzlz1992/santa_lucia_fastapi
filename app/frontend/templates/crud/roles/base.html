@@ -1,0 +1,153 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Mantenimientos | Roles </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+{% if params.fg == "create" %}
+    <div class="px-1 pt-2">
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                <use xlink:href="#check-circle-fill"/>
+            </svg>
+            <div>{{params.ops.role._create}}</div>
+            <div class="col text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+{% elif params.fg == "update" %}
+    <div class="px-1 pt-2">
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                <use xlink:href="#info-fill"/>
+            </svg>
+            <div>{{params.ops.role._update}}</div>
+            <div class="col text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+        <!--Title-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                        <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title mb-0">Administración de registros de roles de usuarios.</h2>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="folder-plus"
+                                style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Seleccione una de las opciones de abajo para registrar y/o actualizar registros de
+                            roles de usuarios del sistema.
+                            Se debe haber completado el registro de usuario antes de poder asignar un rol.
+                        </div>
+                            <!--Register Checkin Button-->
+                        <a class="mb-3 px-3 text-end" href="{{url_for('getting_crud_roles_register_main_page')}}">
+                            <button class="btn btn-info"><b>Registar Rol Usuario</b></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <!--Filter By Date Field-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body" style="width: 25%;">
+                    <form id="id_filter_date_form" novalidate>
+                        <div class="mb-2">
+                            <h5 class="card-title mb-2">Consular nombre de rol</h5>
+                            <input type="text" class="form-control" style="font-size: 12px; color: cadetblue;"
+                                    required placeholder="-- --- --- --" name="entity_identification"
+                                    id="id_input_field">
+                            <div id="identification_text" class="form-text text-start">
+                                <span class="text-muted">
+                                    <p class="my-2" style="color: brown; font-size: 12px;">
+                                        • Ingresar letras únicamente.
+                                    </p>
+                                </span>
+                            </div>
+                            <button class="btn btn-primary mt-2" type="button" id="id_filter_button">
+                                Consultar
+                            </button>
+                            <button class="btn btn-secondary mt-2" type="reset" id="id_reset_button">
+                                Limpiar Campo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--Breakdown Table-->
+        <div class="col">
+            <div class="col align-self-start text-start mt-3">
+                <table class="table" style="border-collapse: separate; border-spacing: 0; border-radius: 8px;">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th scope="col">Cod Registro</th>
+                            <th scope="col">Nombre de Rol</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Jefatura</th>
+                            <th scope="col">Detalles</th>
+                            <th scope="col">Fecha Registro</th>
+                            <th scope="col">Fecha Actualización</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col" colspan="2"
+                                style="text-align: center; vertical-align: middle;">Administrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><b></b>11020</th>
+                            <td>Usuario</td>
+                            <td>Joaquin Gonzalez Cortes</td>
+                            <td>Joaquin Gonzalez Cortes</td>
+                            <td>Usuario general con emisión y registro de solicitudes.</td>
+                            <td>04/12/2024</td>
+                            <td>04/15/2024</td>
+                            <td>Activo</td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <a href="{{url_for('getting_crud_roles_update_main_page', id=10021)}}">
+                                    <i class="align-center" data-feather="refresh-ccw"></i>
+                                    Actualizar
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { FilterSeach } from "{{url_for('static', path='scripts/tools/filtering.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+        let filtering = new FilterSeach("id_filter_button", "id_reset_button", "id_input_field", "name", 2);
+        });
+    </script>
+{% endblock %}

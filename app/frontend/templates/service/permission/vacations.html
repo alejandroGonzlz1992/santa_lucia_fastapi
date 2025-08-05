@@ -1,0 +1,166 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Solicitudes | Vacaciones</title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--login form-->
+{% block container %}
+<div class="mb-3">
+    <div class="mb-3">
+        <div class="row">
+
+            <!--Left Main Menu-->
+            <div class="col-md-4 col-xl-3">
+                <div class="card mb-3">
+                    <div class="card-body text-start">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Solicitud Vacaciones</h5>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="check-square"
+                               style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Ingresar la información solicitada para generar una nueva solicitud de vacaciones.
+                            Considerar los requerimientos para cada campo determinado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Right Main Menu-->
+            <div class="col-md-8 col-xl-9">
+                <div class="card mb-3">
+                    <div class="card-body text-start">
+
+                        <!--Vacation Request Form -->
+                        <form id="id_vacations_form" novalidate>
+
+                            <!--Hidden Fields-->
+                            <input type="hidden" value="POST" name="methods">
+
+                            <h5 class="card-title my-3 text-start"><strong>Vacaciones</strong></h5>
+
+                            <div class="row">
+
+                                <!--Start Date Field-->
+                                <div class="col">
+                                    <div class="py-1 text-start">
+                                        <label class="form-label text-center"
+                                               style="color: #3371db;">Fecha Inicio</label> *
+                                        <div class="input-group">
+                                            <span class="input-group-text" style="font-size: 12px;">
+                                                <i data-feather="calendar"></i>
+                                            </span>
+                                            <input type="date" class="form-control text-start fs-8"
+                                                   id="id_start_date_field" aria-describedby="passwordHelp"
+                                                   style="font-size: 12px; color: cadetblue;" placeholder=""
+                                                   name="start_date_field">
+                                        </div>
+                                    </div>
+
+                                    <!--Start Date Validation Errors Field-->
+                                    <div id="id_start_date_blank_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_start_date_before_current_date_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_start_after_before_return_date_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+
+                                <!--Return Date Field-->
+                                <div class="col">
+                                    <div class="py-1 text-start">
+                                        <label class="form-label text-center"
+                                               style="color: #3371db;">Fecha Retorno</label> *
+                                        <div class="input-group">
+                                            <span class="input-group-text" style="font-size: 12px;">
+                                                <i data-feather="calendar"></i>
+                                            </span>
+                                            <input type="date" class="form-control text-start fs-8"
+                                                   id="id_end_date_field" aria-describedby="passwordHelp"
+                                                   style="font-size: 12px; color: cadetblue;" placeholder=""
+                                                   name="end_date_field">
+                                        </div>
+                                    </div>
+
+                                    <!--Return Date Validation Errors Field-->
+                                    <div id="id_return_date_blank_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_return_date_before_current_date_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_start_return_before_start_date_field"
+                                         class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+
+                                <!--Total Days-->
+                                <div class="col">
+                                    <div class="py-1 text-start">
+                                        <label class="form-label text-center"
+                                               style="color: #3371db;"> Días</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control text-start fs-8"
+                                                   id="id_day_field" aria-describedby="passwordHelp"
+                                                   style="font-size: 12px; color: cadetblue;" placeholder=""
+                                                   name="day_field" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                            <!--Submit Form-->
+                            <div class="d-grid gap-2 mt-3">
+                                <div class="row">
+                                    <div class="col text-end">
+                                        <button class="btn btn-lg btn-info" type="submit">
+                                            <b>Registrar Solicitud</b>
+                                        </button>
+                                    </div>
+                                    <div class="col text-start">
+                                        <button class="btn btn-lg btn-secondary" type="reset">
+                                            <b>Limpiar Campos</b>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { VacationsRequest } from "{{url_for('static', path='scripts/validators/services/vacations.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new VacationsRequest("id_vacations_form");
+        });
+    </script>
+{% endblock %}

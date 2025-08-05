@@ -1,0 +1,170 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Registros | Pregunta Evaluación | Actualizar </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Actualizar Pregunta Evaluativa</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="check-square"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        La información a continuación se utilizará por el sistema para actualización,
+                        notificaciones y confirmaciones. Mantener la información actualizada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--Hour Extra Form -->
+                    <form id="id_evaluation_question_form" novalidate>
+
+                        <!--Hidden Fields-->
+                        <input type="hidden" value="PUT" name="methods">
+                        <input type="hidden" value="10021" name="id">
+
+                        <h5 class="card-title my-3 text-start"><strong>Información de Evaluación</strong></h5>
+
+                        <!--Question Type and Status -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Tipo Evaluación</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_evaluation_type"
+                                                    name="evaluation_type"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar tipo de evaluación</option>
+                                                <option value="test">test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- error div -->
+                                    <div id="id_evaluation_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Habilitar</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_evaluation_status"
+                                                    name="evaluation_status" style="color: cadetblue;">
+                                                <option value="not_select" selected>Habilitar pregunta de evaluación</option>
+                                                <option value="True">Habilitar</option>
+                                                <option value="False">Deshabilitar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- error div -->
+                                    <div id="id_status_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Address Detail-->
+                        <div class="py-3 text-start">
+                            <label class="form-label text-center" style="color: #3371db;">Pregunta Evaluación</label>
+                            <div class="input-group">
+                                <textarea class="form-control" id="id_evaluation_question"
+                                          name="evaluation_question" style="color: cadetblue;" rows="2"
+                                          placeholder="Ingresar pregunta de evaluación"></textarea>
+                            </div>
+
+                            <!-- Address Detail Field Error Message -->
+                            <div id="id_evaluation_question_blank_field_error" class="text-danger text-start"
+                                 style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_evaluation_question_chars_field_error"
+                                 class="text-danger text-start"
+                                 style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_evaluation_question_length_field_error" class="text-danger text-start"
+                                 style="font-size: 13px; display: none;">
+                            </div>
+                            <!---->
+
+                            <div id="id_identification_text_info" class="form-text text-start">
+                                <span class="text-muted fs-6">
+                                    <p class="p-0 m-0" style="color: darkgrey;">
+                                        • Solamente se pueden adicionar signos de interrogación (¿?) y/o punto (.).
+                                    </p>
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-primary" type="submit">
+                                        <b>Actualizar Pregunta</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_evaluation_question_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { QuestionEvaluationRequest } from "{{url_for('static', path='scripts/validators/records/evaluation.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new QuestionEvaluationRequest("id_evaluation_question_form");
+        });
+    </script>
+{% endblock %}

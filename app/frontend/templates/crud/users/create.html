@@ -1,0 +1,547 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Mantenimientos | Usuarios | Registrar </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+{% if params.fg == "fail" %}
+    <div class="px-1 pt-2">
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                <use xlink:href="#exclamation-triangle-fill"/>
+            </svg>
+            <div>{{params.ops.error}}</div>
+            <div class="col text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Registrar Usuario</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="user"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        La información de contacto a continuación se utilizará por el sistema para actualización,
+                        notificaciones y confirmaciones. Mantener la información actualizada. Consider la
+                        importancia de mantener la información actualizada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--User Register Info Form -->
+                    <form id="id_users_form" novalidate>
+                        <h5 class="card-title my-3 text-start"><strong>Información de Usuario</strong></h5>
+
+                        <!--Hidden Input Field-->
+                        <input type="hidden" value="POST" name="method">
+
+                        <!--Identification Field-->
+                        <div class="py-3 text-start">
+                            <label class="form-label text-center" style="color: #3371db;">Identificación</label>
+                            <div class="input-group">
+                                <input type="text" id="id_identification_field" class="form-control"
+                                        style="font-size: 12px; color: cadetblue"
+                                        placeholder="0-0000-0000" name="identification_field">
+                            </div>
+
+                            {% if params.expt == "identification" %}
+                                <div id="id_identification_already_used" class="text-danger text-start"
+                                        style="font-size: 13px; display: block;">
+                                    {{ params.ops.exceptions.identification }}
+                                </div>
+                            {% endif %}
+
+                            <!-- Identification Field Error Message -->
+                            <div id="id_identification_blank_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_identification_length_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_identification_chars_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+
+                            <div id="id_identification_text_info" class="form-text text-start">
+                                <span class="text-muted fs-6">
+                                    <p class="p-0 m-0" style="color: darkgrey;">
+                                        • La identificación debe contener números únicamente.
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--Names Field Group-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Nombre</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" id="id_name_field" class="form-control"
+                                                    style="font-size: 12px; color: cadetblue" required
+                                                    placeholder="Ingresar nombre de usuario"
+                                                    name="name_field">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Name, Lastname, Lastname2 Field Error Message -->
+                                <div id="id_name_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_name_include_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_name_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Apellido</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" id="id_lastname_field" class="form-control"
+                                                    style="font-size: 12px; color: cadetblue" required
+                                                    placeholder="Ingresar apellido de usuario"
+                                                    name="lastname_field">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Name, Lastname, Lastname2 Field Error Message -->
+                                <div id="id_lastname_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_lastname_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_lastname_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
+                                        Segundo Apellido</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" id="id_lastname2_field" class="form-control"
+                                                    style="font-size: 12px; color: cadetblue" required
+                                                    placeholder="Ingresar segundo apellido de usuario"
+                                                    name="lastname2_field">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Name, Lastname, Lastname2 Field Error Message -->
+                                <div id="id_lastname2_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_lastname2_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_lastname2_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Names Field Group-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Genero</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_gender_field" name="gender_field"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar genero</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="No Indica">No Indica</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="id_gender_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Estado Civil</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_marital_status_field"
+                                                    name="marital_status_field" style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar estado civil</option>
+                                                <option value="Casado(a)">Casado(a)</option>
+                                                <option value="Soltero(a)">Soltero(a)</option>
+                                                <option value="Unión Libre">Unión Libre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="id_marital_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Hijo(a)s</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="id_children_field"
+                                                    name="children_field" style="font-size: 12px; color: cadetblue"
+                                                    required placeholder="Ingresar cantidad de hijos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Children Field Error Message -->
+                                <div id="id_children_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Birthday Field-->
+                        <div class="py-3 text-start">
+                            <label class="form-label text-center" style="color: #3371db;">Fecha Cumpleaños</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="id_birthday_field" name="birthday_field"
+                                        style="font-size: 12px; color: cadetblue;">
+                            </div>
+
+                            <!-- Birthday Field Error Message -->
+                            <div id="id_birthday_blank_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_birthday_underage_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_birthday_overage_man_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_birthday_overage_woman_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <div id="id_birthday_indicate_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                            </div>
+                            <!---->
+
+                            <div id="id_children_text_info" class="form-text text-start">
+                                <span class="text-muted fs-6">
+                                    <p class="p-0 m-0" style="color: darkgrey">
+                                        • Formato de fecha: mm/dd/aaaa.
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+
+                        <h5 class="card-title my-3 text-start"><strong>Información Domicilio Contacto</strong></h5>
+
+                        <!--Contact Information Field-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
+                                        Correo Electrónico
+                                    </label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" id="id_email_field"
+                                                    name="email_field" style="font-size: 12px; color: cadetblue;"
+                                                    placeholder="@usuario.com" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% if params.expt == "email" %}
+                                    <div id="id_email_exception_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: block;">
+                                        {{ params.ops.exceptions.email }}
+                                    </div>
+                                {% endif %}
+
+                                <!--Email Validation Errors Field-->
+                                <div id="id_email_blank_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_email_format_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
+                                        Teléfono
+                                    </label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="id_phone_field"
+                                                    name="phone_field" style="font-size: 12px; color: cadetblue;"
+                                                    placeholder="0000 0000" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% if params.expt == "phone" %}
+                                    <div id="id_phone_exception_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: block;">
+                                        {{ params.ops.exceptions.phone }}
+                                    </div>
+                                {% endif %}
+
+                                <!--Phone Validation Errors Field-->
+                                <div id="id_phone_blank_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_phone_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_phone_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Tipo
+                                        Teléfono</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_phone_type_field"
+                                                    name="phone_type_field" style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar tipo de teléfono</option>
+                                                <option value="Móvil">Móvil</option>
+                                                <option value="Domicilio">Domicilio</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="id_phone_type_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
+                                        Teléfono Adicional (Opcional)
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="id_phone_other_field"
+                                                    name="phone_other_field" style="font-size: 12px; color: cadetblue;"
+                                                    placeholder="0000 0000" required>
+                                        </div>
+                                    </div>
+
+                                    <div id="id_phone_other_chars_field_error" class="text-danger text-start"
+                                            style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_phone_other_length_field_error" class="text-danger text-start"
+                                            style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Address Information Field-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Provincia</label> *
+                                    <div class="input-group">
+                                        <select class="form-select mb-2" id="id_province_field" name="province_field"
+                                                style="color: cadetblue;">
+                                            <option value="not_select" selected>Seleccione una provincia</option>
+                                                <option value="1000">Nombre Provincia</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="id_province_not_selected_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Canton</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_canton_field" name="canton_field"
+                                                    style="color: cadetblue;">
+                                                <option value="" selected disabled></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Distrito</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_district_field"
+                                                    name="district_field" style="color: cadetblue;">
+                                                <option value="" selected disabled></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
+                                        Código Postal (Opcional)
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="id_postal_code_field"
+                                                    name="postal_code_field" style="font-size: 12px; color: cadetblue;"
+                                                    placeholder="Ingresar código postal" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Postal Code Validation Errors Field-->
+                                <div id="id_postal_code_chars_format_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_postal_code_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Address Information Details Field-->
+                        <div class="py-3 text-start">
+                            <label class="form-label text-center"
+                                    style="color: #3371db;">Detalle Dirección</label> *
+                            <div class="input-group">
+                                <textarea class="form-control" id="id_address_detail_field"
+                                            name="address_detail_field" rows="2"
+                                            style="color: cadetblue;"
+                                            placeholder="Ingresar detalle de dirección"></textarea>
+                            </div>
+                        </div>
+
+                        <!--Address Details Validation Errors Field-->
+                        <div id="id_address_detail_blank_field_error"
+                                class="text-danger text-start"
+                            style="font-size: 13px; display: none;">
+                        </div>
+                        <div id="id_address_detail_spec_chars_field_error"
+                                class="text-danger text-start"
+                                style="font-size: 13px; display: none;">
+                        </div>
+                        <div id="id_address_detail_length_field_error"
+                                class="text-danger text-start"
+                                style="font-size: 13px; display: none;">
+                        </div>
+
+                        <h5 class="card-title my-3"><strong>Información Registro</strong></h5>
+
+                        <!--Hire Date Field-->
+                        <div class="text-start">
+                            <label class="form-label text-center" style="color: #3371db;">Fecha De Ingreso</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="id_hire_date_field" name="hire_date_field"
+                                        style="font-size: 12px; color: cadetblue;">
+                            </div>
+                        </div>
+
+                        <!-- Hire Date Field Error Message -->
+                        <div id="id_hire_date_blank_field_error"
+                                class="text-danger text-start"
+                                style="font-size: 13px; display: none;">
+                        </div>
+                        <div id="id_hire_date_before_current_date_field_error"
+                                class="text-danger text-start"
+                                style="font-size: 13px; display: none;">
+                        </div>
+                        
+                        <br/>
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-dark" type="submit">
+                                        <b>Registrar Usuario</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_crud_users_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { UsersRequest } from "{{url_for('static', path='scripts/validators/crud/usersValidate.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new UsersRequest("id_users_form");
+        });
+    </script>
+{% endblock %}

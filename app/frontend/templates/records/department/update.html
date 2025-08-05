@@ -1,0 +1,131 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Registros | Departamentos | Actualizar </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Actualizar departamentos</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="check-square"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        La información a continuación se utilizará por el sistema para actualización,
+                        notificaciones y confirmaciones. Mantener la información actualizada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--Hour Extra Form -->
+                    <form id="id_department_form" novalidate>
+
+                        <!--Hidden Fields-->
+                        <input type="hidden" value="POST" name="methods">
+
+                        <h5 class="card-title my-3 text-start"><strong>Información de Departamento</strong></h5>
+
+                        <div class="row">
+
+                            <!--Hidden Input Fields-->
+                            <input type="hidden" value="PUT" name="method">
+                            <input type="hidden" value="10021" name="id">
+
+                            <!--Deducction Name Field Group-->
+                            <div class="py-3 text-start">
+                                <label class="form-label text-center" style="color: #3371db;">Nombre Departamento</label>
+                                <div class="input-group">
+                                    <input type="text" id="id_department_name" class="form-control"
+                                        style="font-size: 12px; color: cadetblue"
+                                        placeholder="-- ---- ---- --"
+                                        name="department_name">
+                                </div>
+
+                                <!-- Identification Field Error Message -->
+                                <div id="id_department_name_blank_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_department_name_length_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_department_name_chars_field_error" class="text-danger text-start"
+                                    style="font-size: 13px; display: none;">
+                                </div>
+                                <!---->
+
+                                <div id="id_name_text_info" class="form-text text-start">
+                                    <span class="text-muted fs-6">
+                                        <p class="p-0 m-0" style="color: darkgrey;">
+                                            • El nombre de departamento debe contener letras únicamente.
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-primary" type="submit">
+                                        <b>Actualizar Departamento</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_deductions_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { DepartmentRequest } from "{{url_for('static', path='scripts/validators/records/department.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new DepartmentRequest("id_department_form");
+        });
+    </script>
+{% endblock %}

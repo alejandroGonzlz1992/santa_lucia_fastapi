@@ -1,0 +1,142 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Registros | Pregunta Evaluación </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+    {% if params.fg == "create" %}
+        <div class="px-1 pt-2">
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#check-circle-fill"/>
+                </svg>
+                <div>{{params.ops.question._create}}</div>
+                <div class="col text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% elif params.fg == "update" %}
+        <div class="px-1 pt-2">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill"/>
+                </svg>
+                <div>{{params.ops.question._change}}</div>
+                <div class="col text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+        <!--Title-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                        <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title mb-0">Preguntas de Evaluación</h2>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="message-circle"
+                                style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Seleccione una de las opciones de abajo para registrar y/o actualizar registros de
+                            preguntas de evaluación del sistema.
+                        </div>
+                            <!--Register Checkin Button-->
+                        <a class="mb-3 px-3 text-end" href="{{url_for('getting_evaluation_question_create_page')}}">
+                            <button class="btn btn-info"><b>Registar Pregunta</b></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <!--Filter By Date Field-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body" style="width: 25%;">
+                    <form id="id_filter_date_form" novalidate>
+                        <div class="mb-2">
+                            <h5 class="card-title mb-2">Consular por estado tipo de evaluación</h5>
+                                <select class="form-select mb-2" style="font-size: 12px; color: cadetblue;"
+                                        aria-label="Default select example" name="evaluation_status" id="id_input_field">
+                                    <option value="Rendimiento de empleado" selected>Empleado</option>
+                                    <option value="Liderazgo">Liderazgo</option>
+                                </select>
+                            <button class="btn btn-primary mt-2" type="button" id="id_filter_button">
+                                Consultar
+                            </button>
+                            <button class="btn btn-secondary mt-2" type="reset" id="id_reset_button">
+                                Limpiar Campo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--Breakdown Table-->
+        <div class="col">
+            <div class="col align-self-start text-start mt-3">
+                <table class="table" style="border-collapse: separate; border-spacing: 0; border-radius: 8px;">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th scope="col">Cod Registro</th>
+                            <th scope="col">Tipo Evaluación</th>
+                            <th scope="col">Pregunta Evaluativa</th>
+                            <th scope="col">Fecha Registro</th>
+                            <th scope="col">Fecha Actualización</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col" colspan="2"
+                                style="text-align: center; vertical-align: middle;">Administrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><b></b>11020</th>
+                            <td>Rendimiento de empleado</td>
+                            <td>¿Considera que el empleado constantemente busca dar la milla extra?</td>
+                            <td>04/12/2024</td>
+                            <td>04/15/2024</td>
+                            <td>Activo</td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <a href="{{url_for('getting_evaluation_question_update_page', id=11020)}}">
+                                    <i class="align-center" data-feather="refresh-ccw"></i>
+                                    Actualizar
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { FilterSeach } from "{{url_for('static', path='scripts/tools/filtering.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+        let filtering = new FilterSeach("id_filter_button", "id_reset_button", "id_input_field", "name", 2);
+        });
+    </script>
+{% endblock %}

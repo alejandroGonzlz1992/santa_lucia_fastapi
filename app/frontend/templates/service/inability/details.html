@@ -1,0 +1,105 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Módulos | Incapacidades | Detalles</title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main form-->
+{% block container %}
+<div class="mb-3">
+
+    <div class="row">
+
+        <!--Title and Filter-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title mb-0">Detalles De Incapacidad</h2>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="briefcase"
+                               style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Se presentan continuación los detalles de incapacidad registrados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Column 1: Payroll Summary -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <h5 class="card-title mb-4">Resumen de Incapacidad</h5>
+
+                    <!-- Dates -->
+                    <div class="mb-4">
+                        <p class="mb-2" style="font-size: 0.95rem;"><strong>Fecha Inicio:</strong> 05/18/2025</p>
+                        <p class="mb-0" style="font-size: 0.95rem;"><strong>Fecha Retorno:</strong> 05/22/20250</p>
+                        <br/>
+                        <p class="mb-0" style="font-size: 0.95rem;"><strong>Estado Incapacidad:</strong> PENDIENTE</p>
+                    </div>
+
+                    <hr>
+
+                    <!-- File and Inability Number -->
+                    <h6 class="text-uppercase text-muted mb-3" style="font-size: 0.85rem;">Detalles</h6>
+                    <div class="text-start" style="font-size: 0.95rem;">
+                        <p class="mb-2">🩺 Número Boleta: 11151440051</p>
+                        <p class="mb-2">🧓 Emisor Legal: CCSS</p>
+                        <p class="mb-3">🏦 Boleta: Archivo</p>
+                    </div>
+
+                    <h6 class="text-uppercase text-muted mb-3" style="font-size: 0.85rem;">Detalle Laboral</h6>
+                    <div class="text-start" style="font-size: 0.95rem;">
+                        <p class="mb-2">💳 Nombre empleado: Joaquin Gonzalez Cortes</p>
+                        <p class="mb-2">💳 Departamento: Ventas & Servicio al Cliente</p>
+                        <p class="mb-0">🚌 Jefe directo: Joaquin Gonzalez Cortes</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Payment Details -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <h5 class="card-title mb-4">Administrar</h5>
+
+                    <input type="hidden" value="10021" name="id">
+
+                    <!--Update Inability Checkin Button-->
+                    <a class="mb-3 px-3" href="{{url_for('getting_inabilities_update_page', id=10021)}}">
+                        <button class="btn btn-info"><b>Actualizar Incapacidad</b></button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

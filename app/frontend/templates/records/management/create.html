@@ -1,0 +1,205 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Registros | Jefaturas | Registrar </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Registrar Jefatura</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="check-square"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        La información a continuación se utilizará por el sistema para actualización,
+                        notificaciones y confirmaciones. Mantener la información actualizada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--Hour Extra Form -->
+                    <form id="id_management_form" novalidate>
+
+                        <!--Hidden Fields-->
+                        <input type="hidden" value="POST" name="methods">
+
+                        <h5 class="card-title my-3 text-start"><strong>Información de Jefatura</strong></h5>
+
+                        <!--Manager and Department -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Gerente Asociado</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_manager_name"
+                                                    name="manager_name"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar gerante asociado</option>
+                                                <option value="test">Test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--Dropdown error div-->
+                                    <div id="id_manager_name_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Departamento</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_department_name"
+                                                    name="department_name"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar departamento</option>
+                                                <option value="test">Test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--Dropdown error div-->
+                                    <div id="id_department_name_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Employee and gross pay-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Empleado</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_employee_name"
+                                                    name="employee_name"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar empleado asociado</option>
+                                                <option value="test">Test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--Dropdown error div-->
+                                    <div id="id_employee_name_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Ingreso Base Mensual</label> *
+                                    <div class="input-group">
+                                        <input type="text" id="id_management_gross_income" class="form-control"
+                                            style="font-size: 12px; color: cadetblue"
+                                            placeholder="0.00" name="management_gross_income">
+                                    </div>
+
+                                    <!-- Gross Pay Error Divs -->
+                                    <div id="id_gross_income_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_gross_income_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_gross_income_minimum_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_gross_income_maximum_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                    <div id="id_identification_text_info" class="form-text text-start">
+                                        <span class="text-muted fs-7">
+                                            <p class="p-0 m-0" style="color: darkgrey;">
+                                                • Ingreso salario base debe contener números y/o números decimales únicamente.
+                                                • Formatos: 0.00 CRC | 0 CRC
+                                            </p>
+                                        </span>
+                                        <span class="text-muted fs-7">
+                                            <p class="p-0 m-0" style="color: darkgrey;">
+                                                • Formatos: 0.00 CRC | 0 CRC
+                                            </p>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-dark" type="submit">
+                                        <b>Registrar Jefatura</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_management_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { ManagementRequest } from "{{url_for('static', path='scripts/validators/records/management.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new ManagementRequest("id_management_form");
+        });
+    </script>
+{% endblock %}

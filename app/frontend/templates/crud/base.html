@@ -1,0 +1,64 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Mantenimientos </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+        <!--Title and Filter-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title mb-0">Administración de registros del sistema</h2>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="settings"
+                               style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Seleccione una de las opciones de abajo para registrar, actualizar
+                            y/o eliminar registros del sistema.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body" style="width: 25%;">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">
+                            <span data-feather="folder" class="feather-lg me-1" style="color: cadetblue;"></span>
+                            <a href="{{url_for('getting_crud_users_main_page')}}">
+                                Registros de usuarios</a>
+                        </li>
+                        <li class="mb-3">
+                            <span data-feather="folder" class="feather-lg me-1" style="color: cadetblue;"></span>
+                            <a href="{{url_for('getting_crud_roles_main_page')}}">
+                                Asignar roles de usuario</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

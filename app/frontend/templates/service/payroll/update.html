@@ -1,0 +1,252 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Módulos | Planillas | Ajustes </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main form-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Información Planilla</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="alert-circle"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        Complete los campos requeridos en el formulario para ajustar la información de planilla.
+                        Es importante mantener esta información actualizada por conceptos de notificaciones y más.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--Payroll Update Info Form -->
+                    <form id="id_payroll_deduction_form" novalidate>
+                        <h5 class="card-title my-3 text-start"><strong>Deducciones Legales</strong></h5>
+
+                        <!--Address Information Field-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">CCSS IVM</label> *
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_ccss_ivm"
+                                                name="ccss_ivm" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_ccss_ivm_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_ccss_ivm_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">CCSS EME</label> *
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_ccss_eme"
+                                                name="ccss_eme" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_ccss_eme_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_ccss_eme_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">ROP Banco Popular</label> *
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_rop_popular"
+                                                name="rop_popular" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_rop_popular_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_rop_popular_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Impuesto de Renta</label> * 
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_rent_tax"
+                                                name="rent_tax" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_rent_tax_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                                <div id="id_rent_tax_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+
+                                <div id="new_password_text" class="form-text text-start">
+                                    <span class="text-muted">
+                                        <p class="p-0 m-0">
+                                            • De no aplicar para deducción de impuesto de renta ingresar 0.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <h5 class="card-title my-3 text-start"><strong>Otras Deducciones</strong></h5>
+
+                        <!--Address Information Field-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Prestamos</label> (Opcional)
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_loan_request"
+                                                name="loan_request" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_loan_request_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Pensión Alimenticia</label> (Opcional)
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_child_support"
+                                                name="child_support" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_child_support_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Embargos</label> (Opcional)
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_require_loans"
+                                                name="require_loans" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_require_loans_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center"
+                                            style="color: #3371db;">Otros</label> (Opcional)
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_other_deductions"
+                                                name="other_deductions" style="font-size: 12px; color: cadetblue;"
+                                                placeholder="0.0 CRC" required>
+                                    </div>
+                                </div>
+
+                                <!--Province Validation Errors Field-->
+                                <div id="id_other_deductions_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-primary" type="submit">
+                                        <b>Ajustar Información</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_payroll_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { PayrollUpdateRequest } from "{{url_for('static', path='scripts/validators/services/payrollUpdate.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new PayrollUpdateRequest("id_payroll_deduction_form");
+        });
+    </script>
+{% endblock %}

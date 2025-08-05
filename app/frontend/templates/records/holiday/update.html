@@ -1,0 +1,195 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Registros | Feriados | Actualizar </title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+
+{% endblock %}
+
+<!--main-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+
+        <!--Left Main Menu-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Actualizar Día Feriado</h5>
+                    </div>
+                    <div class="card-body text-start">
+                        <i class="align-start" data-feather="check-square"
+                            style="color: darkblue; width: 25px; height: 25px;"></i>
+                        La información a continuación se utilizará por el sistema para actualización,
+                        notificaciones y confirmaciones. Mantener la información actualizada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Right Main Menu-->
+        <div class="col-md-8 col-xl-9">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+
+                    <!--Hour Extra Form -->
+                    <form id="id_holiday_form" novalidate>
+
+                        <!--Hidden Fields-->
+                        <input type="hidden" value="PUT" name="methods">
+                        <input type="hidden" value="10021" name="id">
+                        
+                        <h5 class="card-title my-3 text-start"><strong>Información de día feriado</strong></h5>
+
+                        <!---->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Nombre</label> *
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="id_holiday_name"
+                                            style="font-size: 12px; color: cadetblue" required
+                                            placeholder="Ingresar nombre de día feriado"
+                                            name="holiday_name">
+                                    </div>
+                                    <!-- Holiday name error divs -->
+                                    <div id="id_holiday_name_blank_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_holiday_name_chars_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_holiday_name_length_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Employee and gross pay-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Mes</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_holiday_month"
+                                                    name="holiday_month"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar el mes del día feriado</option>
+                                                {% for month in params.calendar.months %}
+                                                    <option value="{{ month }}">{{ month }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--Dropdown error div-->
+                                    <div id="id_holiday_name_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Día</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_holiday_day"
+                                                    name="holiday_day"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar el día del mes</option>
+                                                {% for day in params.calendar.days %}
+                                                    <option value="{{ day }}">{{ day }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--Dropdown error div-->
+                                    <div id="id_day_name_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_february_days_field_error" class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                    <div id="id_month_days_combination_field_error" class="text-danger text-start"
+                                         style="font-size: 13px; display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">Tipo Pago Día Feriado</label> *
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_holiday_type"
+                                                    name="holiday_type"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>Seleccionar categoría de pago</option>
+                                                <option value="test">Test</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--Dropdown error div-->
+                                    <div id="id_holiday_type_not_selected_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="color: brown;"><strong> * </strong>Campos obligatorios</p>
+
+                        <!--Submit Form-->
+                        <div class="d-grid gap-2 mt-3">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <button class="btn btn-lg btn-dark" type="submit">
+                                        <b>Actualizar Día Feriado</b>
+                                    </button>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-lg btn-info" type="reset">
+                                        <b>Limpiar Campos</b>
+                                    </button>
+                                </div>
+                                <div class="col text-start">
+                                    <a href="{{url_for('getting_holiday_main_page')}}">
+                                        <button class="btn btn-lg btn-secondary" type="button">
+                                            <b>Regresar</b>
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+    <script type="module">
+        import { HolidayRequest } from "{{url_for('static', path='scripts/validators/records/holiday.js')}}";
+        document.addEventListener("DOMContentLoaded", () => {
+            new HolidayRequest("id_holiday_form");
+        });
+    </script>
+{% endblock %}

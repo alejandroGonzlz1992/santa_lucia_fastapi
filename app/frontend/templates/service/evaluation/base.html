@@ -1,0 +1,109 @@
+<!--Inherit-->
+{% extends 'base/index.html' %}
+
+<!--Page Title-->
+{% block title %}
+    <title>Ferretería Santa Lucía | Módulos | Evaluaciones</title>
+{% endblock %}
+
+<!--ops bar-->
+{% block ops_bar %}
+    {% if params.fg == "employee" %}
+        <div class="px-1 pt-2">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill"/>
+                </svg>
+                <div>{{params.ops.evaluation.employee}}</div>
+                <div class="col text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% elif  params.fg == "supervisor" %}
+        <div class="px-1 pt-2">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill"/>
+                </svg>
+                <div>{{params.ops.evaluation.supervisor}}</div>
+                <div class="col text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% elif  params.fg == "inactive" %}
+        <div class="px-1 pt-2">
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#exclamation-triangle-fill"/>
+                </svg>
+                <div>{{params.ops.evaluation.not_active}}</div>
+                <div class="col text-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!--login form-->
+{% block container %}
+<div class="mb-3">
+    <div class="row">
+        <!--Title and Filter-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body text-start">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2 class="card-title mb-0">Registro de Evaluaciones</h2>
+                        </div>
+                        <div class="card-body text-start">
+                            <i class="align-start" data-feather="clipboard"
+                               style="color: darkblue; width: 25px; height: 25px;"></i>
+                            Seleccione una de las opciones de abajo para iniciar las evaluaciones de empleado-supervisor
+                            y/o supervisor-empleado segun si nivel de acceso.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--Select an Option for Permissions-->
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body" style="width: 25%;">
+                    <div class="flex-grow-1">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <span data-feather="folder" class="feather-lg me-1" style="color: cadetblue;"></span>
+                                <a href="{{url_for('getting_evaluation_employee_page')}}">
+                                    Evaluación del empleado</a>
+                            </li>
+                            <li class="mb-3">
+                                <span data-feather="folder" class="feather-lg me-1" style="color: cadetblue;"></span>
+                                <a href="{{url_for('getting_evaluation_supervisor_page')}}">
+                                    Evaluación del supervisor</a>
+                            </li>
+                            <li class="mb-3">
+                                <span data-feather="folder" class="feather-lg me-1" style="color: darkblue;"></span>
+                                <a href="{{url_for('getting_evaluation_enable_page')}}">
+                                    Habilitar Evaluaciones</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+<!--local .js scripts -->
+{% block scripts %}
+    {{ super() }}
+{% endblock %}
