@@ -57,4 +57,71 @@ export class Shared {
         return {"create": createDate, "current": currentDate};
     }
 
+    /* formatting birthday date */
+    static birthdayInputFormatting(field){
+        /* convert input to date object and current date */
+        let birthdayDate = new Date(field.value);
+        let currentDate = new Date();
+
+        currentDate.setHours(0, 0, 0, 0);
+
+        /* underage and overage male, overage female */
+        let underAge = new Date(currentDate);
+        underAge.setFullYear(underAge.getFullYear() - Static.UNDERAGE);
+
+        let overAgeMan = new Date(currentDate);
+        overAgeMan.setFullYear(overAgeMan.getFullYear() - Static.RETIRE_AGE_MAN);
+
+        let overAgeWoman = new Date(currentDate);
+        overAgeWoman.setFullYear(overAgeWoman.getFullYear() - Static.RETIRE_AGE_WOMAN);
+
+        /* return */
+        return {"birth": birthdayDate, "under": underAge, "man": overAgeMan, "woman": overAgeWoman}
+    }
+
+    /* enable and disable password field values */
+    static enableAndDisablePasswordField(passwordFields, buttonFields){
+        /* define password and button lists */
+        let passwords = [];
+        let buttons = [];
+
+        /* traverse passwords input fields and append element to list */
+        passwordFields.forEach((passw) => {
+            /* get element */
+            let field = document.querySelector(passw);
+            /* append */
+            passwords.push(field);
+        });
+
+        /* traverse button fields and append element to list */
+        buttonFields.forEach((button) => {
+            /* get element */
+            let bttn = document.querySelector(button);
+            /* append */
+            buttons.push(bttn);
+        });
+
+        /* combine both lists */
+        let combine = passwords.map((field, index) => [field, buttons[index]]);
+
+        /* event listener on combine list */
+        combine.forEach(([passw, toggle]) => {
+            if(passw && toggle) {
+                /* event listener */
+                toggle.addEventListener("click", function() {
+                    /* change input attribute if button is click (hide or unhide) */
+                    let type = passw.getAttribute("type") === "password" ? "text" : "password";
+                    passw.setAttribute("type", type);
+
+                    /* update eye-slash icon base on type change of input */
+                    let icon = toggle.querySelector("i");
+                    if(icon){
+                        icon.classList.toggle("fa-eye");
+                        icon.classList.toggle("fa-eye-slash");
+                    }
+                });
+            }
+        });
+    }
+
 }

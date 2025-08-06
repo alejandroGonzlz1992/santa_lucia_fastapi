@@ -5,6 +5,21 @@ export const Static = {
 
     /* general */
     MIN_ROLE_NAME_LENGTH: 5,
+    IDENTIFICATION_LENGTH: 9,
+    NAME_LASTNAME_LASTNAME2_LENGTH: 4,
+    UNDERAGE: 18,
+    RETIRE_AGE_MAN: 65,
+    RETIRE_AGE_WOMAN: 63,
+    MAX_CHILDREN: 12,
+    PASSWORD_MIN_LENGTH: 9,
+    PHONE_LENGTH: 8,
+    GROSS_INCOME_MIN: 250000,
+    GROSS_INCOME_MAX: 3000000,
+
+    ENABLE_USER_CREATE_PASSWORD: [
+        ["#id_user_password", "#id_user_password_confirm"],
+        ["#id_user_password_bttn", "#id_user_confirm_password_bttn"]
+    ],
 
     /* regex Dictionary */
     REGEX: {
@@ -250,6 +265,51 @@ export const Static = {
         "user_identification", "user_name", "user_lastname", "user_lastname2", "user_birthday", "user_gender",
         "user_marital_status", "user_children", "user_password", "user_password_confirm", "user_email", "user_phone",
         "user_gross_income", "user_create_date"
+    ],
+
+    // DEDUCTIONS
+    DEDUCTIONS_FORM_DICT: {
+
+    },
+
+    DEDUCTIONS_BLANK_FIELDS: [
+
+    ],
+
+    // DEPARTMENTS
+    DEPARTMENTS_FORM_DICT: {
+
+    },
+
+    DEPARTMENTS_BLANK_FIELDS: [
+
+    ],
+
+    // PAYMENT DATE
+    PAYMENT_DATE_FORM_DICT: {
+
+    },
+
+    PAYMENT_DATE_BLANK_FIELDS: [
+
+    ],
+
+    // QUESTIONS
+    QUESTIONS_FORM_DICT: {
+
+    },
+
+    QUESTIONS_BLANK_FIELDS: [
+
+    ],
+
+    // SCHEDULE
+    SCHEDULE_FORM_DICT: {
+
+    },
+
+    SCHEDULE_BLANK_FIELDS: [
+
     ],
 
 }

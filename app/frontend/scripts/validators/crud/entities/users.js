@@ -20,7 +20,40 @@ export class UserValidator {
     /* event validators */
     initEventValidators() {
 
+        /* enable / disable password inputs */
+        Shared.enableAndDisablePasswordField(
+            Static.ENABLE_USER_CREATE_PASSWORD[0],
+            Static.ENABLE_USER_CREATE_PASSWORD[1]
+        )
+
         /* on-time validators */
+        this.userIdentificationFieldValidate("user_identification");
+
+        this.userNameFieldValidate("user_name");
+
+        this.userLastNameFieldValidate("user_lastname");
+
+        this.userLastName2FieldValidate("user_lastname2");
+
+        this.userBirthdayFieldValidate("user_birthday", "user_gender");
+
+        this.userGenderFieldValidate("user_gender");
+
+        this.userMaritalStatusFieldValidate("user_marital_status");
+
+        this.userChildrenFieldValidate("user_children");
+
+        this.userPasswordFieldValidate("user_password");
+
+        this.userPasswordConfirmFieldValidate("user_password", "user_password_confirm");
+
+        this.userEmailFieldValidate("user_email");
+
+        this.userPhoneFieldValidate("user_phone");
+
+        this.userGrossIncomeFieldValidate("user_gross_income");
+
+        this.userCreateUpdateDateFieldValidate("user_create_date");
 
         /* form submission */
         this.form.addEventListener("submit", (e) => {
@@ -84,16 +117,16 @@ export class UserValidator {
         return this.valid;
     }
 
-    /* rol name */
-    roleNameFieldValidate(fieldName) {
+    /* user identification */
+    userIdentificationFieldValidate(fieldName){
         /* get input element and div ids */
         let inputField = this.form.elements.namedItem(fieldName);
-        let divBlank = document.getElementById(this.data.role_name.div_id.blank);
-        let divChars = document.getElementById(this.data.role_name.div_id.chars);
-        let divLength = document.getElementById(this.data.role_name.div_id.length);
+        let divBlank = document.getElementById(this.data.user_identification.div_id.blank);
+        let divChars = document.getElementById(this.data.user_identification.div_id.chars);
+        let divLength = document.getElementById(this.data.user_identification.div_id.length);
 
         /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divBlank, this.data.role_name.text.blank, this);
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_identification.text.blank, this);
 
         if(this.valid){
             /* add event listener to input field */
@@ -101,19 +134,19 @@ export class UserValidator {
                 /* get input field value */
                 let value = inputField.value.trim();
                 /* validate only letters are input */
-                if(!Static.REGEX.only_letters.test(value)){
+                if(!Static.REGEX.only_numbers.test(value)){
                     /* clear prev error message */
                     Shared.clearErrorMessages(inputField, [divLength]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divChars, this.data.role_name.text.chars);
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_identification.text.chars);
                     /* update flag */
                     this.valid = false;
                 }
-                else if(value.length < Static.MIN_ROLE_NAME_LENGTH){
+                else if(value.length !== Static.IDENTIFICATION_LENGTH){
                     /* clear prev error message */
                     Shared.clearErrorMessages(inputField, [divChars]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divLength, this.data.role_name.text.length);
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_identification.text.length);
                     /* update flag */
                     this.valid = false;
                 }
@@ -127,14 +160,197 @@ export class UserValidator {
         }
     }
 
-    /* rol type */
-    roleTypeFieldValidate(fieldName){
+    /* user name */
+    userNameFieldValidate(fieldName){
         /* get input element and div ids */
         let inputField = this.form.elements.namedItem(fieldName);
-        let divStatus = document.getElementById(this.data.role_type.div_id.status);
+        let divBlank = document.getElementById(this.data.user_name.div_id.blank);
+        let divChars = document.getElementById(this.data.user_name.div_id.chars);
+        let divLength = document.getElementById(this.data.user_name.div_id.length);
 
         /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divStatus, this.data.role_type.text.status, this);
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_name.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.only_letters.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divLength]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_name.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(value.length < Static.NAME_LASTNAME_LASTNAME2_LENGTH){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_name.text.length);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divLength]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user lastname */
+    userLastNameFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_lastname.div_id.blank);
+        let divChars = document.getElementById(this.data.user_lastname.div_id.chars);
+        let divLength = document.getElementById(this.data.user_lastname.div_id.length);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_lastname.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.only_letters.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divLength]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_lastname.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(value.length < Static.NAME_LASTNAME_LASTNAME2_LENGTH){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_lastname.text.length);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divLength]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user lastname2 */
+    userLastName2FieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_lastname2.div_id.blank);
+        let divChars = document.getElementById(this.data.user_lastname2.div_id.chars);
+        let divLength = document.getElementById(this.data.user_lastname2.div_id.length);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_lastname2.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.only_letters.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divLength]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_lastname2.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(value.length < Static.NAME_LASTNAME_LASTNAME2_LENGTH){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_lastname2.text.length);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divLength]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user birthday */
+    userBirthdayFieldValidate(fieldBirthday, fieldGender){
+        /* get input element and div ids */
+        let birthdayField = this.form.elements.namedItem(fieldBirthday);
+        let genderField = this.form.elements.namedItem(fieldGender);
+        let divBlank = document.getElementById(this.data.user_birthday.div_id.blank);
+        let divUnder = document.getElementById(this.data.user_birthday.div_id.under);
+        let divMan = document.getElementById(this.data.user_birthday.div_id.man);
+        let divWoman = document.getElementById(this.data.user_birthday.div_id.woman);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(birthdayField, divBlank, this.data.user_birthday.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            birthdayField.addEventListener("input", () => {
+                /* get input field value */
+                let dateField = Shared.birthdayInputFormatting(birthdayField);
+                let gender = genderField.value.trim();
+                /* validate only letters are input */
+                if(dateField.birth > dateField.under){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(birthdayField, [divMan, divWoman]);
+                    /* display error message */
+                    Shared.displayErrorMessages(birthdayField, divUnder, this.data.user_birthday.text.under);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(gender === "Masculino" && dateField.birth < dateField.man){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(birthdayField, [divUnder, divWoman]);
+                    /* display error message */
+                    Shared.displayErrorMessages(birthdayField, divMan, this.data.user_birthday.text.man);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(gender === "Femenino" && dateField.birth < dateField.woman){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(birthdayField, [divUnder, divMan]);
+                    /* display error message */
+                    Shared.displayErrorMessages(birthdayField, divWoman, this.data.user_birthday.text.woman);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(birthdayField, [divUnder, divMan, divWoman]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user gender */
+    userGenderFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divStatus = document.getElementById(this.data.user_gender.div_id.status);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divStatus, this.data.user_gender.text.status, this);
 
         if(this.valid){
             /* add event listener to input field */
@@ -146,7 +362,7 @@ export class UserValidator {
                     /* clear prev error message */
                     Shared.clearErrorMessages(inputField, [divStatus]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divStatus, this.data.role_type.text.status);
+                    Shared.displayErrorMessages(inputField, divStatus, this.data.user_gender.text.status);
                     /* update flag */
                     this.valid = false;
                 }
@@ -160,14 +376,14 @@ export class UserValidator {
         }
     }
 
-    /* rol department */
-    roleDepartmentFieldValidate(fieldName){
+    /* user martial status */
+    userMaritalStatusFieldValidate(fieldName){
         /* get input element and div ids */
         let inputField = this.form.elements.namedItem(fieldName);
-        let divStatus = document.getElementById(this.data.role_department.div_id.status);
+        let divStatus = document.getElementById(this.data.user_marital_status.div_id.status);
 
         /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divStatus, this.data.role_department.text.status, this);
+        Shared.validateInputBlankFields(inputField, divStatus, this.data.user_marital_status.text.status, this);
 
         if(this.valid){
             /* add event listener to input field */
@@ -179,7 +395,7 @@ export class UserValidator {
                     /* clear prev error message */
                     Shared.clearErrorMessages(inputField, [divStatus]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divStatus, this.data.role_department.text.status);
+                    Shared.displayErrorMessages(inputField, divStatus, this.data.user_marital_status.text.status);
                     /* update flag */
                     this.valid = false;
                 }
@@ -193,32 +409,43 @@ export class UserValidator {
         }
     }
 
-    /* rol schedule */
-    roleScheduleFieldValidate(fieldName){
+    /* user children */
+    userChildrenFieldValidate(fieldName){
         /* get input element and div ids */
         let inputField = this.form.elements.namedItem(fieldName);
-        let divStatus = document.getElementById(this.data.role_schedule.div_id.status);
+        let divBlank = document.getElementById(this.data.user_children.div_id.blank);
+        let divChars = document.getElementById(this.data.user_children.div_id.chars);
+        let divMax = document.getElementById(this.data.user_children.div_id.max);
 
         /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divStatus, this.data.role_schedule.text.status, this);
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_children.text.blank, this);
 
         if(this.valid){
             /* add event listener to input field */
             inputField.addEventListener("input", () => {
                 /* get input field value */
                 let value = inputField.value.trim();
+                let toInt = parseInt(value);
                 /* validate only letters are input */
-                if(value === "not_select"){
+                if(!Static.REGEX.only_numbers.test(value)){
                     /* clear prev error message */
-                    Shared.clearErrorMessages(inputField, [divStatus]);
+                    Shared.clearErrorMessages(inputField, [divMax]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divStatus, this.data.role_schedule.text.status);
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_children.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(toInt > Static.MAX_CHILDREN){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divMax, this.data.user_children.text.max);
                     /* update flag */
                     this.valid = false;
                 }
                 else {
                     /* clear error message */
-                    Shared.clearErrorMessages(inputField, [divStatus]);
+                    Shared.clearErrorMessages(inputField, [divChars, divMax]);
                     /* update flag */
                     this.valid = true;
                 }
@@ -226,15 +453,224 @@ export class UserValidator {
         }
     }
 
-    /* rol create date */
-    roleCreateDateFieldValidate(fieldName){
+    /* user password */
+    userPasswordFieldValidate(fieldPassword){
         /* get input element and div ids */
-        let inputField = this.form.elements.namedItem(fieldName);
-        let divBlank = document.getElementById(this.data.role_create_date.div_id.blank);
-        let divBefore = document.getElementById(this.data.role_create_date.div_id.before);
+        let inputField = this.form.elements.namedItem(fieldPassword);
+        let divBlank = document.getElementById(this.data.user_password.div_id.blank);
+        let divFormat = document.getElementById(this.data.user_password.div_id.format);
+        let divLength = document.getElementById(this.data.user_password.div_id.length);
 
         /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divBlank, this.data.role_create_date.text.blank, this);
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_password.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.password.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divLength]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divFormat, this.data.user_password.text.format);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(value.length < Static.PASSWORD_MIN_LENGTH){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divFormat]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_password.text.length);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divFormat, divLength]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user password confirm */
+    userPasswordConfirmFieldValidate(fieldPassword, fieldPasswordConfirm){
+        /* get input element and div ids */
+        let inputPasswordConfirm = this.form.elements.namedItem(fieldPasswordConfirm);
+        let inputPassword = this.form.elements.namedItem(fieldPassword);
+        let divBlank = document.getElementById(this.data.user_password_confirm.div_id.blank);
+        let divMismatch = document.getElementById(this.data.user_password_confirm.div_id.mismatch);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputPasswordConfirm, divBlank, this.data.user_password_confirm.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputPasswordConfirm.addEventListener("input", () => {
+                /* get input field value */
+                let confirmValue = inputPasswordConfirm.value.trim();
+                let passwordValue = inputPassword.value.trim();
+                /* validate only letters are input */
+                if(confirmValue !== passwordValue){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputPasswordConfirm, [divMismatch]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputPasswordConfirm, divMismatch, this.data.user_password_confirm.text.mismatch);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputPasswordConfirm, [divMismatch]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user email */
+    userEmailFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_email.div_id.blank);
+        let divFormat = document.getElementById(this.data.user_email.div_id.format);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_email.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.email_format.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divFormat]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divFormat, this.data.user_email.text.format);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divFormat]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user phone */
+    userPhoneFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_phone.div_id.blank);
+        let divChars = document.getElementById(this.data.user_phone.div_id.chars);
+        let divLength = document.getElementById(this.data.user_phone.div_id.length);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_phone.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                /* validate only letters are input */
+                if(!Static.REGEX.only_numbers.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divLength]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_phone.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(value.length !== Static.PHONE_LENGTH){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divLength, this.data.user_phone.text.length);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divLength]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user gross income */
+    userGrossIncomeFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_gross_income.div_id.blank);
+        let divChars = document.getElementById(this.data.user_gross_income.div_id.chars);
+        let divMin = document.getElementById(this.data.user_gross_income.div_id.min);
+        let divMax = document.getElementById(this.data.user_gross_income.div_id.max);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_gross_income.text.blank, this);
+
+        if(this.valid){
+            /* add event listener to input field */
+            inputField.addEventListener("input", () => {
+                /* get input field value */
+                let value = inputField.value.trim();
+                let toInt = parseInt(value);
+                /* validate only letters are input */
+                if(!Static.REGEX.only_numbers.test(value)){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divMin, divMax]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divChars, this.data.user_gross_income.text.chars);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(toInt < Static.GROSS_INCOME_MIN){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divMax]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divMin, this.data.user_gross_income.text.min);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else if(toInt > Static.GROSS_INCOME_MAX){
+                    /* clear prev error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divMin]);
+                    /* display error message */
+                    Shared.displayErrorMessages(inputField, divMax, this.data.user_gross_income.text.max);
+                    /* update flag */
+                    this.valid = false;
+                }
+                else {
+                    /* clear error message */
+                    Shared.clearErrorMessages(inputField, [divChars, divMin, divMax]);
+                    /* update flag */
+                    this.valid = true;
+                }
+            });
+        }
+    }
+
+    /* user create/update date */
+    userCreateUpdateDateFieldValidate(fieldName){
+        /* get input element and div ids */
+        let inputField = this.form.elements.namedItem(fieldName);
+        let divBlank = document.getElementById(this.data.user_create_date.div_id.blank);
+        let divBefore = document.getElementById(this.data.user_create_date.div_id.before);
+
+        /* validate on-time blank fields */
+        Shared.validateInputBlankFields(inputField, divBlank, this.data.user_create_date.text.blank, this);
 
         if(this.valid){
             /* add event listener to input field */
@@ -246,46 +682,13 @@ export class UserValidator {
                     /* clear prev error message */
                     Shared.clearErrorMessages(inputField, [divBefore]);
                     /* display error message */
-                    Shared.displayErrorMessages(inputField, divBefore, this.data.role_create_date.text.before);
+                    Shared.displayErrorMessages(inputField, divBefore, this.data.user_create_date.text.before);
                     /* update flag */
                     this.valid = false;
                 }
                 else {
                     /* clear error message */
                     Shared.clearErrorMessages(inputField, [divBefore]);
-                    /* update flag */
-                    this.valid = true;
-                }
-            });
-        }
-    }
-
-    /* rol status */
-    roleStatusFieldValidate(fieldName){
-        /* get input element and div ids */
-        let inputField = this.form.elements.namedItem(fieldName);
-        let divStatus = document.getElementById(this.data.role_status.div_id.status);
-
-        /* validate on-time blank fields */
-        Shared.validateInputBlankFields(inputField, divStatus, this.data.role_status.text.status, this);
-
-        if(this.valid){
-            /* add event listener to input field */
-            inputField.addEventListener("input", () => {
-                /* get input field value */
-                let value = inputField.value.trim();
-                /* validate only letters are input */
-                if(value === "not_select"){
-                    /* clear prev error message */
-                    Shared.clearErrorMessages(inputField, [divStatus]);
-                    /* display error message */
-                    Shared.displayErrorMessages(inputField, divStatus, this.data.role_status.text.status);
-                    /* update flag */
-                    this.valid = false;
-                }
-                else {
-                    /* clear error message */
-                    Shared.clearErrorMessages(inputField, [divStatus]);
                     /* update flag */
                     this.valid = true;
                 }

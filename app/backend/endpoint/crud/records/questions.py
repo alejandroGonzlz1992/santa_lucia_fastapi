@@ -7,12 +7,12 @@ from typing import Annotated, Optional, Union
 from app.backend.utils.constants import Constants as cns
 
 # local router
-department_main: object = APIRouter(prefix=cns.URL_CRUD.value, tags=[cns.CRUD.value])
+question_main: object = APIRouter(prefix=cns.URL_CRUD.value, tags=[cns.CRUD.value])
 
 
-# GET -> Department Main Page
-@department_main.get(cns.URL_CRUD_DEPARTMENT.value, response_class=HTMLResponse)
-async def Getting_Crud_Department_Main_Endpoint(
+# GET -> Questions Main Page
+@question_main.get(cns.URL_CRUD_QUESTION.value, response_class=HTMLResponse)
+async def Getting_Crud_Questions_Main_Endpoint(
         request: Request,
         fg: Annotated[str, None] = None
 ) -> object:
@@ -31,7 +31,7 @@ async def Getting_Crud_Department_Main_Endpoint(
 
     # return
     return cns.HTML_.value.TemplateResponse(
-        "crud/records/department/index.html", context={
+        "crud/records/questions/index.html", context={
             "request": request, "params": {
                 "fg": fg, "ops": cns.OPS_CRUD.value
             }
@@ -39,9 +39,9 @@ async def Getting_Crud_Department_Main_Endpoint(
     )
 
 
-# GET -> Department Create Page
-@department_main.get(cns.URL_CRUD_DEPARTMENT_REGISTER.value, response_class=HTMLResponse)
-async def Getting_Crud_Department_Create_Endpoint(
+# GET -> Questions Create Page
+@question_main.get(cns.URL_CRUD_QUESTION_REGISTER.value, response_class=HTMLResponse)
+async def Getting_Crud_Questions_Create_Endpoint(
         request: Request
 ) -> object:
     """
@@ -56,15 +56,15 @@ async def Getting_Crud_Department_Create_Endpoint(
 
     # return
     return cns.HTML_.value.TemplateResponse(
-        "crud/records/department/create.html", context={
+        "crud/records/questions/create.html", context={
             "request": request
         }
     )
 
 
-# GET -> Department Update Page
-@department_main.get(cns.URL_CRUD_DEPARTMENT_UPDATE.value, response_class=HTMLResponse)
-async def Getting_Crud_Department_Update_Endpoint(
+# GET -> Questions Update Page
+@question_main.get(cns.URL_CRUD_QUESTION_UPDATE.value, response_class=HTMLResponse)
+async def Getting_Crud_Questions_Update_Endpoint(
         request: Request,
         id: Annotated[Union[int, str], None]
 ) -> object:
@@ -80,7 +80,7 @@ async def Getting_Crud_Department_Update_Endpoint(
 
     # return
     return cns.HTML_.value.TemplateResponse(
-        "crud/records/department/update.html", context={
+        "crud/records/questions/update.html", context={
             "request": request, "id": id
         }
     )

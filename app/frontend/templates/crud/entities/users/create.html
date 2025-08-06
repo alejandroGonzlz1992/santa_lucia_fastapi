@@ -218,6 +218,31 @@
                             <div class="col">
                                 <div class="py-1 text-start">
                                     <label class="form-label text-center" style="color: #3371db;">
+                                       * Genero</label>
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <select class="form-select mb-2" id="id_user_gender"
+                                                    name="user_gender"
+                                                    style="color: cadetblue;">
+                                                <option value="not_select" selected>
+                                                    Seleccionar el genero de usuario</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!--Error Message Div-->
+                                    <div id="id_user_gender_status_field_error" class="text-danger text-start"
+                                        style="font-size: 13px; display: none;">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="py-1 text-start">
+                                    <label class="form-label text-center" style="color: #3371db;">
                                        * Fecha Cumpleaños</label>
                                     <div class="input-group">
                                         <div class="input-group">
@@ -255,32 +280,6 @@
                             <div class="col">
                                 <div class="py-1 text-start">
                                     <label class="form-label text-center" style="color: #3371db;">
-                                       * Genero</label>
-                                    <div class="input-group">
-                                        <div class="input-group">
-                                            <select class="form-select mb-2" id="id_user_gender"
-                                                    name="user_gender"
-                                                    style="color: cadetblue;">
-                                                <option value="not_select" selected>
-                                                    Seleccionar el genero de usuario</option>
-                                                <option value="Masculino">Masculino</option>
-                                                <option value="Femenino">Femenino</option>
-                                                <option value="No Indica">No Indica</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!--Error Message Div-->
-                                    <div id="id_user_gender_status_field_error" class="text-danger text-start"
-                                        style="font-size: 13px; display: none;">
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="py-1 text-start">
-                                    <label class="form-label text-center" style="color: #3371db;">
                                        * Estado Civil</label>
                                     <div class="input-group">
                                         <div class="input-group">
@@ -291,7 +290,6 @@
                                                     Seleccionar el estado civil</option>
                                                 <option value="Casado">Casado(a)</option>
                                                 <option value="Soltero">Soltero(a)</option>
-                                                <option value="Union Libre">Unión Libre</option>
                                             </select>
                                         </div>
                                     </div>
